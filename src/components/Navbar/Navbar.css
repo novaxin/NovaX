@@ -1,0 +1,57 @@
+:root {
+    --text: #dae5fb;
+    --text-light: #dae5fb9f;
+    --background: #040e20;
+    --primary: #89b1f1;
+    --secondary: #160f90;
+    --accent: #673aea;
+    --card-bg:#0C1627;
+  }
+  
+
+a {
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+}
+
+a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-light);
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transition: width 0.5s ease;
+}
+
+a:hover::after {
+    width: 100%;
+    color: var(--text-light);
+}
+
+a:hover {
+    color: var(--text-light);
+}
+
+/* Styles for the navbar toggler button */
+.navbar-toggler {
+    background-color: transparent; /* Use accent color for the button background */
+    border: none; /* Remove the border if you don't want one */
+    color: var(--text); /* Use text color */
+}
+
+
+/* Optional: Custom icon inside the toggler */
+.navbar-toggler-icon::before {
+    content: '\2630';
+    font-size: 20px;
+    color: var(--text-light);
+    border: none;
+}
+
+
+
+

@@ -1,0 +1,58 @@
+:root {
+    --text: #dae5fb;
+    --text-light: #dae5fb9f;
+    --background: #040e20;
+    --primary: #89b1f1;
+    --secondary: #160f90;
+    --accent: #673aea;
+    --card-bg:#0C1627;
+  }
+  
+
+.textarea{
+    background-color: var(--accent);
+    border-radius: 0.5rem;
+    border: none;
+    color: var(--text);
+}
+.textarea:focus{
+    border: none;
+    outline: none;
+}
+
+.modal{
+    color: var(--text);
+}
+
+.modal-content{
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+}
+
+.Note-post-input{
+    width: 100%;
+    height: 50vh;
+    border-radius: 0.5rem;
+}
+
+.Note-post-input:focus{
+    outline: none;
+    border: none;
+}
+
+.btn-card {
+    background-color: var(--primary);
+    color: var(--background)
+}
+
+.close{
+    color: var(--text);
+}
+.close:hover{
+    color: var(--text);
+}
+
+.close:focus{
+    outline: none;
+    border: none;
+}

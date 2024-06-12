@@ -1,0 +1,36 @@
+:root {
+  --text: #dae5fb;
+  --text-light: #dae5fb9f;
+  --background: #040e20;
+  --primary: #89b1f1;
+  --secondary: #160f90;
+  --accent: #673aea;
+  --card-bg: #0c1627;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text);
+  border-radius: 0.5rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 10pt;
+  color: var(--text-light);
+}
+
+.counters {
+  cursor: pointer;
+}
+
+
+.post-note{
+  color: var(--text);
+  text-wrap: balance;
+}
