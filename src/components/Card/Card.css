@@ -19,6 +19,7 @@
   justify-content: start;
   align-items: center;
   border: none;
+  background-color: transparent;
   padding: 0;
   margin: 0;
   font-size: 10pt;
@@ -29,8 +30,12 @@
   cursor: pointer;
 }
 
-
-.post-note{
+.note-text{
   color: var(--text);
   text-wrap: balance;
+}
+
+.readmore-btn{
+  color: var(--text-light);
+  cursor: pointer;
 }

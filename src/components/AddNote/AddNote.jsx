@@ -17,7 +17,7 @@ function AddNote() {
         const { value } = event.target;
         setNewNote(value);
         setCharCount(value.length);
-        if (value.length > 30) {
+        if (value.length > 400) {
             setErrorMessage('Note length should be within 30 characters.');
             setCountDisplayStyle({ color: '#DC3545' });
         } else {
@@ -27,7 +27,7 @@ function AddNote() {
     };
 
     const handleSubmit = () => {
-        if (charCount > 30) {
+        if (charCount > 400) {
             setErrorMessage('Note length should be within 30 characters.');
         } else {
             axios.post(`${Base_url}/postnote`, { note: newNote })
@@ -68,7 +68,7 @@ function AddNote() {
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="col">
-                                            <p style={countDisplayStyle}><b>{charCount}/30</b></p>
+                                            <p style={countDisplayStyle}><b>{charCount}/300</b></p>
                                             {errorMessage && <p className="error-message">{errorMessage}</p>}
                                         </div>
                                         <div className="col">

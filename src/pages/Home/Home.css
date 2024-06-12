@@ -7,9 +7,5 @@
     --accent: #673aea;
   }
   
-  body {
-    background-color: var(--background);
-    color: var(--text);
-  }
-  
+
   

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Card.css';
 import { BiComment, BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { FaEye } from "react-icons/fa";
 
 function Cards({ notes, formatCreatedAt }) {
+    const [expandedIndex, setExpandedIndex] = useState(null);
+
+    const toggleExpand = (index) => {
+        if (expandedIndex === index) {
+            setExpandedIndex(null);
+        } else {
+            setExpandedIndex(index);
+        }
+    };
+
     return (
         <div className="container">
             <div className="row">
@@ -11,7 +21,14 @@ function Cards({ notes, formatCreatedAt }) {
                     <div key={index} className="col-12">
                         <div className="card mt-2">
                             <div className="card-body">
-                                <div className="note-text">{note.note}</div>
+                                <pre className="note-text">
+                                    {expandedIndex === index ? note.note : note.note.slice(0, 100)}
+                                    {note.note.length > 100 && (
+                                        <span className='readmore-btn' onClick={() => toggleExpand(index)}>
+                                            {expandedIndex === index ? '...less' : '...more'}
+                                        </span>
+                                    )}
+                                </pre>
                                 <div className="card-footer">
                                     <p className='d-inline p-2 counters'><BiSolidUpvote /> {note.likes}</p>
                                     <p className='d-inline p-2 counters'><BiSolidDownvote /> {note.dislikes}</p>

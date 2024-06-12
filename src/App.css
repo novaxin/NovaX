@@ -1,3 +1,14 @@
+:root {
+  --text: #dae5fb;
+  --text-light: #dae5fb9f;
+  --background: #040e20;
+  --primary: #89b1f1;
+  --secondary: #160f90;
+  --accent: #673aea;
+  --card-bg: #0c1627;
+}
+
+
 .App {
   text-align: center;
 }
@@ -27,6 +38,12 @@
 .App-link {
   color: #61dafb;
 }
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+}
+
 
 @keyframes App-logo-spin {
   from {
