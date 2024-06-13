@@ -14,8 +14,7 @@ function Home() {
     const fetchNote = () => {
         axios.get(`${Base_url}/display`)
             .then(response => {
-                console.log(response.data);
-                setNote(response.data); // Update the state with fetched data
+                setNote(response.data);
             })
             .catch(error => {
                 console.log(error);
@@ -24,7 +23,7 @@ function Home() {
 
     const formatCreatedAt = (createdAt) => {
         const date = new Date(createdAt);
-        return date.toLocaleString(); // Format the date and time according to the user's locale
+        return date.toLocaleString();
     }
 
     return (

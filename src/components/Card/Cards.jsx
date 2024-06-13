@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import './Card.css';
 import { BiComment, BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { FaEye } from "react-icons/fa";
+import Commands from '../Commands/Commands';
 
 function Cards({ notes, formatCreatedAt }) {
     const [expandedIndex, setExpandedIndex] = useState(null);
+    const [note_id, setNote_id] = useState(null);
 
     const toggleExpand = (index) => {
         if (expandedIndex === index) {
@@ -12,6 +14,10 @@ function Cards({ notes, formatCreatedAt }) {
         } else {
             setExpandedIndex(index);
         }
+    };
+
+    const fetchNoteid = (note_id_card) => {
+        setNote_id(note_id_card)
     };
 
     return (
@@ -33,7 +39,7 @@ function Cards({ notes, formatCreatedAt }) {
                                     <p className='d-inline p-2 counters'><BiSolidUpvote /> {note.likes}</p>
                                     <p className='d-inline p-2 counters'><BiSolidDownvote /> {note.dislikes}</p>
                                     <p className='d-inline p-2 counters'><FaEye /> {note.views}</p>
-                                    <p className='d-inline p-2 counters'><BiComment />D1</p>
+                                    <p className='d-inline p-2 counters' onClick={() => fetchNoteid(note.id)} data-toggle="modal" data-target="#exampleModal2"><BiComment /> {note.commend_count}<Commands note_id={note_id} /></p>
                                     <p className='d-inline p-2'>{formatCreatedAt(note.created)}</p>
                                 </div>
                             </div>

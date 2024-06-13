@@ -13,7 +13,6 @@ function RandomPage() {
   const fetchNote = () => {
       axios.get(`${Base_url}/random`)
           .then(response => {
-              console.log(response.data);
               setNote(response.data); // Update the state with fetched data
           })
           .catch(error => {
@@ -23,7 +22,7 @@ function RandomPage() {
 
   const formatCreatedAt = (createdAt) => {
       const date = new Date(createdAt);
-      return date.toLocaleString(); // Format the date and time according to the user's locale
+      return date.toLocaleString(); 
   }
 
   return (
