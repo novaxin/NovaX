@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import './Commands.css';
 import axios from 'axios';
 import { Base_url, formatCreatedAt } from '../../Constents/constents';  // Adjust this import based on your actual file structure and constants
+import { AuthContext } from '../../context/AuthContext';
+
 
 function Commands({ note_id }) {
     const [selectedOption, setSelectedOption] = useState('recent');
@@ -10,6 +12,8 @@ function Commands({ note_id }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTooLong, setIsTooLong] = useState(false);
     const [isLoading, setIsLoading] = useState(true); // Track loading state
+
+    const { isLoggedIn, username } = useContext(AuthContext);
 
     useEffect(() => {
         fetchCommand(selectedOption);
@@ -30,14 +34,14 @@ function Commands({ note_id }) {
 
         setIsSubmitting(true);
 
-        axios.post(`${Base_url}/post_command/${note_id}`, { command: newCommand })
+        axios.post(`${Base_url}/post_command/${note_id}`, { command: newCommand ,user:username})
             .then(response => {
                 console.log('Command saved successfully:', response.data);
                 fetchCommand(selectedOption);  // Fetch updated list after saving
                 setNewCommand('');  // Clear the input field
             })
             .catch(error => {
-                console.error('Error saving command:', error);
+                console.log('Error saving command:', error);
                 // Optionally, add UI feedback to inform the user about the error
             })
             .finally(() => {

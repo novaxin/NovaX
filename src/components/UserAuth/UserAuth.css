@@ -1,0 +1,20 @@
+:root {
+    --text: #dae5fb;
+    --text-light: #dae5fb9f;
+    --background: #040e20;
+    --primary: #89b1f1;
+    --secondary: #160f90;
+    --accent: #673aea;
+    --card-bg: #0c1627;
+  }
+  
+
+.authicon{
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.btn-link{
+  color: var(--text-light);
+  margin-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Card.css';
-import { BiComment, BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
+import { BiComment, BiSolidDownvote, BiSolidUpvote, BiUser } from "react-icons/bi";
 import { FaEye } from "react-icons/fa";
 import Commands from '../Commands/Commands';
 
@@ -36,6 +36,7 @@ function Cards({ notes, formatCreatedAt }) {
                                     )}
                                 </pre>
                                 <div className="card-footer">
+                                    <p className='d-inline p-2 counters'><BiUser /> {note.username}</p>
                                     <p className='d-inline p-2 counters'><BiSolidUpvote /> {note.likes}</p>
                                     <p className='d-inline p-2 counters'><BiSolidDownvote /> {note.dislikes}</p>
                                     <p className='d-inline p-2 counters'><FaEye /> {note.views}</p>
