@@ -20,17 +20,14 @@ function RandomPage() {
           });
   }
 
-  const formatCreatedAt = (createdAt) => {
-      const date = new Date(createdAt);
-      return date.toLocaleString(); 
-  }
+
 
   return (
       <>
           <div className='container'>
               <div className='row'>
                   <div className='col'>
-                      <Cards notes={note} formatCreatedAt={formatCreatedAt} />
+                      <Cards notes={note} />
                   </div>
               </div>
           </div>

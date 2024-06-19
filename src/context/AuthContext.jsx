@@ -1,13 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
-// Removed unused imports
-// import axios from 'axios';
-// import { Base_url } from '../Constents/constents';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -23,6 +21,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('username', username);
     setIsLoggedIn(true);
     setUsername(username);
+    window.location.href = '/';
   };
 
   const logout = () => {
@@ -30,8 +29,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('username');
     setIsLoggedIn(false);
     setUsername('');
+    window.location.href = '/';
   };
-
   return (
     <AuthContext.Provider value={{ isLoggedIn, username, login, logout }}>
       {children}

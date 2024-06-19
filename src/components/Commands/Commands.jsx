@@ -1,14 +1,15 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './Commands.css';
 import axios from 'axios';
 import { Base_url, formatCreatedAt } from '../../Constents/constents';  // Adjust this import based on your actual file structure and constants
 import { AuthContext } from '../../context/AuthContext';
+import CommandCard from './CommandfullCard';
 
 
 function Commands({ note_id }) {
     const [selectedOption, setSelectedOption] = useState('recent');
-    const [displayCommand, setDisplayCommand] = useState([]);
-    const [newCommand, setNewCommand] = useState('');
+    const [displayCommant, setDisplayCommant] = useState([]);
+    const [newCommant, setNewCommant] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isTooLong, setIsTooLong] = useState(false);
     const [isLoading, setIsLoading] = useState(true); // Track loading state
@@ -16,12 +17,12 @@ function Commands({ note_id }) {
     const { isLoggedIn, username } = useContext(AuthContext);
 
     useEffect(() => {
-        fetchCommand(selectedOption);
+        fetchCommant(selectedOption);
     }, [selectedOption, note_id]);
 
-    const handleCommandChange = (event) => {
+    const handleCommantChange = (event) => {
         const { value } = event.target;
-        setNewCommand(value);
+        setNewCommant(value);
         if (value.length > 100) {
             setIsTooLong(true);
         } else {
@@ -29,16 +30,16 @@ function Commands({ note_id }) {
         }
     };
 
-    const postNoteCommand = () => {
+    const postNoteCommant = () => {
         if (isSubmitting) return;
 
         setIsSubmitting(true);
 
-        axios.post(`${Base_url}/post_command/${note_id}`, { command: newCommand ,user:username})
+        axios.post(`${Base_url}/post_command/${note_id}`, { commant: newCommant, user: username })
             .then(response => {
                 console.log('Command saved successfully:', response.data);
-                fetchCommand(selectedOption);  // Fetch updated list after saving
-                setNewCommand('');  // Clear the input field
+                fetchCommant(selectedOption);  // Fetch updated list after saving
+                setNewCommant('');  // Clear the input field
             })
             .catch(error => {
                 console.log('Error saving command:', error);
@@ -49,12 +50,12 @@ function Commands({ note_id }) {
             });
     };
 
-    const fetchCommand = (filter) => {
+    const fetchCommant = (filter) => {
         setIsLoading(true); // Set loading state before fetch
 
         axios.get(`${Base_url}/display_command/${note_id}?filter=${filter}`)
             .then(response => {
-                setDisplayCommand(response.data);
+                setDisplayCommant(response.data);
             })
             .catch(error => {
                 console.error('Error fetching commands:', error);
@@ -68,7 +69,7 @@ function Commands({ note_id }) {
         setSelectedOption(event.target.value);
     };
 
-    const stopCommandClosing = (event) => {
+    const stopCommantClosing = (event) => {
         event.stopPropagation();
     };
 
@@ -77,13 +78,13 @@ function Commands({ note_id }) {
             <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
-                        <div className="modal-header" onClick={stopCommandClosing}>
+                        <div className="modal-header" onClick={stopCommantClosing}>
                             <h5 className="modal-title mr-3" id="exampleModal2Label">Commands</h5>
                             <select
                                 className='commandfilter mr-3'
                                 value={selectedOption}
                                 onChange={handleChange}
-                                onClick={stopCommandClosing}
+                                onClick={stopCommantClosing}
                             >
                                 <option value="recent">Recent</option>
                                 <option value="oldest">Oldest</option>
@@ -93,21 +94,22 @@ function Commands({ note_id }) {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form onSubmit={(e) => { e.preventDefault(); postNoteCommand(); }}>
-                            <div onClick={stopCommandClosing} className="modal-body" style={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}>
+                        <form onSubmit={(e) => { e.preventDefault(); postNoteCommant(); }}>
+                            <div onClick={stopCommantClosing} className="modal-body" style={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}>
                                 <div className="container-fluid">
                                     {isLoading ? (
                                         <p>Loading...</p>
-                                    ) : displayCommand.length === 0 ? (
+                                    ) : displayCommant.length === 0 ? (
                                         <p>No commands found.</p>
                                     ) : (
-                                        displayCommand.map((command, index) => (
+                                        displayCommant.map((command, index) => (
                                             <div className="row" key={index}>
                                                 <div className="col-12">
                                                     <div className="card card-commands">
                                                         <div className="card-body">
                                                             <p>{command.id} --- {command.command}</p>
                                                             <div className="card-footer">
+                                                                <p className='d-inline p-2 counters'>{command.username}</p>
                                                                 <p className='d-inline p-2 counters'>{formatCreatedAt(command.created)}</p>
                                                             </div>
                                                         </div>
@@ -118,18 +120,18 @@ function Commands({ note_id }) {
                                     )}
                                 </div>
                             </div>
-                            <div className="modal-footer" onClick={stopCommandClosing}>
+                            <div className="modal-footer" onClick={stopCommantClosing}>
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="col d-flex bd-highlight">
                                             <input
-                                                value={newCommand}
-                                                onChange={handleCommandChange}
+                                                value={newCommant}
+                                                onChange={handleCommantChange}
                                                 type="text"
                                                 className={`post-command-input p-2 w-100 bd-highlight ${isTooLong ? 'text-too-long' : ''}`}
                                                 placeholder='Enter the command'
                                             />
-                                            <button type="submit" className="btn btn-card p-2 flex-shrink-1 bd-highlight" onClick={postNoteCommand}>Save changes</button>
+                                            <button type="submit" className="btn btn-card p-2 flex-shrink-1 bd-highlight" onClick={postNoteCommant}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
