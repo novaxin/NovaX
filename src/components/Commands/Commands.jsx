@@ -107,7 +107,7 @@ function Commands({ note_id }) {
                                                 <div className="col-12">
                                                     <div className="card card-commands">
                                                         <div className="card-body">
-                                                            <p>{command.id} --- {command.command}</p>
+                                                            <p>{command.command}</p>
                                                             <div className="card-footer">
                                                                 <p className='d-inline p-2 counters'>{command.username}</p>
                                                                 <p className='d-inline p-2 counters'>{formatCreatedAt(command.created)}</p>

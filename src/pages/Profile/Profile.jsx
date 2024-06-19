@@ -1,23 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-import { Base_url, formatCreatedAt } from '../../Constents/constents';
+import { Base_url } from '../../Constents/constents'; // Adjust import as per your constants
 import Cards from '../../components/Card/Cards';
 import CommandfullCard from '../../components/Commands/CommandfullCard';
-import './Profile.css'
+import './Profile.css';
 
 function Profile() {
     const { isLoggedIn, username } = useContext(AuthContext);
     const [note, setNote] = useState([]);
-    const [command, setCommand] = useState([]);
-    const [tab, setTab] = useState('note')
+    const [commant, setCommant] = useState([]);
+    const [tab, setTab] = useState('command'); // Default to 'command' tab
 
     useEffect(() => {
-        if (isLoggedIn) {
+        if (isLoggedIn && username) {
             fetchUserNote();
-            fetchCommand()
+            fetchCommant();
         }
-    }, [username]);
+    }, [isLoggedIn, username]);
 
     const fetchUserNote = () => {
         axios.get(`${Base_url}/display_user_note/${username}`)
@@ -29,10 +29,15 @@ function Profile() {
             });
     };
 
-
-    const fetchCommand = () => {
-
-    }
+    const fetchCommant = () => {
+        axios.get(`${Base_url}/display_user_command/${username}`)
+            .then(response => {
+                setCommant(response.data);
+            })
+            .catch(error => {
+                console.error('Error retrieving user commands:', error);
+            });
+    };
 
     const handleTabChange = (value) => {
         setTab(value);
@@ -43,23 +48,31 @@ function Profile() {
     }
 
     return (
-        <>
-            <div className='container'>
-                <div className="row text-center">
-                    <div className="col">
-                        <h2 className='tab' onClick={() => handleTabChange('note')}>MY NOTES</h2>
-                    </div>
-                    <div className="col">
-                        <h2 className='tab' onClick={() => handleTabChange('command')}>MY COMMENTS</h2>
-                    </div>
+        <div className='container'>
+            <div className="row text-center">
+                <div className="col">
+                    <h2
+                        className={`tab ${tab === 'note' ? 'active' : ''}`}
+                        onClick={() => handleTabChange('note')}
+                    >
+                        MY NOTES
+                    </h2>
                 </div>
-                <div className='row'>
-                    <div className='col'>
-                        {tab == "command"? <CommandfullCard /> : <Cards notes={note} />}
-                    </div>
+                <div className="col">
+                    <h2
+                        className={`tab ${tab === 'command' ? 'active' : ''}`}
+                        onClick={() => handleTabChange('command')}
+                    >
+                        MY COMMENTS
+                    </h2>
                 </div>
             </div>
-        </>
+            <div className='row'>
+                <div className='col'>
+                    {tab === "command" ? <CommandfullCard commant={commant} /> : <Cards notes={note} />}
+                </div>
+            </div>
+        </div>
     );
 }
 

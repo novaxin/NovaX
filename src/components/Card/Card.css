@@ -28,8 +28,14 @@
 
 .counters {
   cursor: pointer;
-}
 
+}
+.username-display{
+  cursor: pointer;
+  border: 1px solid var(--text-light);
+  padding: 0.5rem;
+  border-radius: .5rem;
+}
 .note-text{
   color: var(--text);
   text-wrap: balance;
@@ -38,4 +44,8 @@
 .readmore-btn{
   color: var(--text-light);
   cursor: pointer;
+}
+
+.alert-tbn{
+  background-color: var(--accent);
 }

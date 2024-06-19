@@ -17,3 +17,17 @@
 .tab.active {
     color: var(--accent);
 }
+
+.nav-subtabs {
+    color: var(--text-light);
+    border: 1px solid var(--text);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.nav-subtabs.active {
+    color: var(--accent);
+    border: 1px solid var(--text);
+    border-radius: 0.5rem;
+}

@@ -56,15 +56,23 @@ function Cards({ notes }) {
     return (
         <div className="container">
             {alert && (
-                <div className="alert alert-primary" role="alert">
-                    {actionType === 'like' ? 'You liked' : 'You disliked'}
+
+
+                <div class="alert alert-tbn alert-dismissible fade show" role="alert">
+                    <strong>{actionType === 'like' ? 'You liked' : 'You disliked'}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+
             )}
             <div className="row">
                 {notes.map((note, index) => (
                     <div key={index} className="col-12">
                         <div className="card mt-2">
+                            
                             <div className="card-body">
+                                <p className='username-display'><BiUser /> {note.username}</p>
                                 <pre className="note-text">
                                     {expandedIndex === index ? note.note : note.note.slice(0, 100)}
                                     {note.note.length > 100 && (
@@ -74,7 +82,7 @@ function Cards({ notes }) {
                                     )}
                                 </pre>
                                 <div className="card-footer">
-                                    <p className='d-inline p-2 counters'><BiUser /> {note.username}</p>
+                                    
                                     <p className='d-inline p-2 counters' onClick={() => LikeorDislike('like', note.id)}><BiSolidUpvote /> {note.likes}</p>
                                     <p className='d-inline p-2 counters' onClick={() => LikeorDislike('dislike', note.id)}><BiSolidDownvote /> {note.dislikes}</p>
                                     <p className='d-inline p-2 counters'><FaEye /> {note.views}</p>

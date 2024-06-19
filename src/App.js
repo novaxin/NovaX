@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/AuthContext';
 import Profile from './pages/Profile/Profile';
+import Leaderboard from './pages/Leaderboard/Leaderboard';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/random" element={<RandomPage />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/profile/:username" element={<Profile />} />
               </Routes>
             </div>

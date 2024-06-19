@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './Navbar.css';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import { RelaodPage } from '../../Constents/constents';
 import AddNote from '../AddNote/AddNote';
 import UserAuth from '../UserAuth/UserAuth';
@@ -8,30 +8,30 @@ import { AuthContext } from '../../context/AuthContext';
 
 function Navbar() {
   const { isLoggedIn, username, logout } = useContext(AuthContext);
-
+  
   return (
     <>
       <div className="container-fluid">
         <div className="row">
           <div className="col">
             <nav className="navbar navbar-expand-lg">
-              <Link className="navbar-brand" to="/">NovaX</Link> {/* Use Link for SPA navigation */}
+              <Link className="navbar-brand" to="/">NovaX</Link>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <Link className="nav-link" to="/">recent</Link> {/* Use Link for SPA navigation */}
+                    <Link className="nav-link" to="/">Recent</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/random">random</Link> {/* Use Link for SPA navigation */}
+                    <Link className="nav-link" to="/random">Random</Link>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">Trending</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">leaderboard</a>
+                  <Link className="nav-link" to="/leaderboard">Leaderboard</Link> 
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">date</a>
