@@ -34,7 +34,7 @@ function Navbar() {
                   <Link className="nav-link" to="/leaderboard">Leaderboard</Link> 
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">date</a>
+                    <a className="nav-link" href="#">date!</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" onClick={RelaodPage} href="#">Reload</a>
