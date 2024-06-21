@@ -4,7 +4,7 @@ import { BiUser } from 'react-icons/bi';
 
 function CommandfullCard({ commant }) {
   if (!commant) {
-    return <p>No commands available</p>;
+    return <p>Noo commands available</p>;
   }
   return (
     <>
