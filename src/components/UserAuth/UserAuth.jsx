@@ -18,7 +18,7 @@ function UserAuth() {
     setErrors('');
 
     if (isNewUser) {
-      // Registration
+
       if (password !== confirmPassword) {
         setErrors('Passwords do not match');
         return;
